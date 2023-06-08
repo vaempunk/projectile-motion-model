@@ -1,16 +1,23 @@
-from util.mathutils import sign
+def sign(x):
+    if x >= 0:
+        return 1
+    return -1
+
 
 class Secant:
+
     def __init__(self, func, a, b) -> None:
         self.func = func
         self.x1 = a
         self.x2 = b
+
     def next(self):
         numerator = self.x1 * self.func(self.x2) - self.x2 * self.func(self.x1)
         denominator = self.func(self.x2) - self.func(self.x1)
         self.x1 = self.x2
         self.x2 = numerator / denominator
         return self.x2
+
     def find_root(self, eps):
         x0 = self.x1
         x1 = self.x2
@@ -18,12 +25,15 @@ class Secant:
             x0 = x1
             x1 = Secant.next(self)
         return x1
-    
+
+
 class Bisection:
+
     def __init__(self, func, a, b) -> None:
         self.func = func
         self.x1 = a
         self.x2 = b
+
     def next(self):
         x = (self.x1 + self.x2) / 2
         if sign(self.func(x)) == sign(self.func(self.x1)):
@@ -31,6 +41,7 @@ class Bisection:
         else:
             self.x2 = x
         return x
+
     def find_root(self, eps, nmax):
         x0 = self.x1
         x1 = self.x2
