@@ -42,12 +42,12 @@ class Bisection:
             self.x2 = x
         return x
 
-    def find_root(self, eps, nmax):
+    def find_root(self, eps, nmax=1000000000):
         x0 = self.x1
         x1 = self.x2
         for _ in range(nmax):
             x0 = x1
-            x1 = Bisection.next(self)
+            x1 = self.next()
             if abs(x1 - x0) < eps:
                 return x1
         raise ValueError("No root found")

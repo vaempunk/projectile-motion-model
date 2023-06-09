@@ -1,1 +1,1 @@
-__all__ = ["diffequation", "interpolation", "rootfind"]
+__all__ = ["integration", "interpolation", "rootfind"]
