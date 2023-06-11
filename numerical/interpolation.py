@@ -1,6 +1,11 @@
 import numpy as np
 
 
+def interpolate(x, y, method):
+    if method == 'lagrange':
+        return interpolate_lagrange(x, y)
+
+
 def interpolate_lagrange(x_vals, y_vals):
     assert len(x_vals) == len(y_vals), 'x_vals and y_vals must be of same size'
 

@@ -1,3 +1,10 @@
+def find_root(equation, a, b, eps, method):
+    if method == 'secant':
+        return Secant(equation, a, b).find_root(eps=eps)
+    if method == 'bisection':
+        return Bisection(equation, a, b).find_root(eps=eps)
+
+
 def sign(x):
     if x >= 0:
         return 1
