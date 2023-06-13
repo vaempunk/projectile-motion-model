@@ -1,4 +1,5 @@
 import numpy as np
+from numerical import *
 
 
 g = 9.81
@@ -58,3 +59,41 @@ def calculate_angle(m, c, x0, v0, x_ans, t_ans):
 
 def calculate_error(y, y_analytical, h):
     return np.max(np.linalg.norm(y[-4:] - y_analytical[-4:], axis=1)) / h**4
+
+
+class Solution:
+    def __init__(self, params, step_size, eps):
+        self.m = params['mass']
+        self.c = params['air_resist_coeff']
+        self.x0 = params['x0']
+        self.y0 = params['y0']
+        self.v0 = params['v0']
+        self.angle = params['angle']
+        self.surface_func = params['surface_func']
+        self.step_size = step_size
+        self.eps = eps
+        self._solve()
+
+    def _solve(self):
+        ode_func = get_ode(self.m, self.c)
+        t0, y0 = get_cauchy_data(
+            self.x0, self.y0, self.v0, self.angle)
+        above_surface = get_above_surface(self.surface_func)
+
+        self.t, self.y = integration.solve_ode(
+            ode_func, t0, y0, self.step_size,
+            predicate_func=above_surface,
+            method='rk4'
+        )
+        polynomial = interpolation.interpolate(
+            self.t[-4:], self.y[-4:], 'lagrange')
+        root_equation = get_root_equation(
+            self.surface_func, polynomial)
+        self.t_ans = rootfind.find_root(
+            root_equation, self.t[-2], self.t[-1], self.eps, 'bisection')
+        self.y_ans = polynomial(self.t_ans)
+
+    def get_solved_y(self):
+        solved = self.y.copy()
+        solved[-1] = self.y_ans
+        return solved
