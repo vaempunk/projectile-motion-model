@@ -11,3 +11,5 @@ def phi2(x):
 
 def phi3(x):
     return np.max([0, 1 - 2*(x-5.5)**2])
+
+

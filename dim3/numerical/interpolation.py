@@ -19,3 +19,6 @@ def interpolate_lagrange(x_vals, y_vals):
         y = sum([y_vals[i] * basis_funcs[i] for i in range(len(y_vals))])
         return y
     return polynomial
+
+
+# TODO: Implement hermit interpolation
