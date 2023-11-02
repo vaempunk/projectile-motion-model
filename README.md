@@ -3,27 +3,24 @@
 ## Main problem
 
 Given equation:
-$$
-\begin{cases}
 
-ma_x = - cv_x \\
-v_x(0) = v_0 \cos{\theta} \\
-x(0) = x_0 \\
-ma_y = -cv_y - mg \\
-v_y(0) = v_0 \sin{\theta} \\
-y(0) = y_0
+$ma_x = - cv_x$
 
-\end{cases}
-$$
+$v_x(0) = v_0 \cos{\theta}$
+
+$x(0) = x_0$
+
+$ma_y = -cv_y - mg$
+
+$v_y(0) = v_0 \sin{\theta}$
+
+$y(0) = y_0$
 
 Find $t_{ans}$: $y(t_{ans}) = \phi(x(t_{ans}))$
 
 ## Analytical solution
 
-$$
-y_0 + \frac{m}{c}((\frac{m}{c}g + v_0 \sin{\theta})(1 - e^{-\frac{c}{m}t}) - gt)
-- \phi(x_0 + \frac{m}{c}v_0 \cos{\theta}(1 - e^{-\frac{c}{m}t})) = 0
-$$
+$y_0 + \frac{m}{c}((\frac{m}{c}g + v_0 \sin{\theta})(1 - e^{-\frac{c}{m}t}) - gt)c - \phi(x_0 + \frac{m}{c}v_0 \cos{\theta}(1 - e^{-\frac{c}{m}t})) = 0$
 
 ## Numerical solution
 
